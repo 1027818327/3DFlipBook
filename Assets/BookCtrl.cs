@@ -5,8 +5,8 @@
  *  Copyright (c) KeJun All rights reserved.
  * -----------------------------------------------------------
  *		描述: 
- *      创建者：#DEVELOPERNAME#
- *      创建时间: #CREATIONDATE#
+ *      创建者：陈伟超
+ *      创建时间: 2018/12/12
  *  
  */
 #endregion
