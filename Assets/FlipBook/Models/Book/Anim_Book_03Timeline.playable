@@ -9,16 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 337831424, guid: 6a10b2909283487f913b00d94cd3faf5, type: 3}
-  m_Name: Front
+  m_Name: Anim_Book_03Timeline
   m_EditorClassIdentifier: 
   m_NextId: 0
   m_Tracks:
-  - {fileID: 114441624172278402}
+  - {fileID: 114461531742740392}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60
   m_DurationMode: 0
---- !u!114 &114441624172278402
+--- !u!114 &114461531742740392
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -36,12 +36,12 @@ MonoBehaviour:
   m_Parent: {fileID: 11400000}
   m_Children: []
   m_Clips:
-  - m_Start: 1.8333333333333333
-    m_ClipIn: 1.8333333333333333
-    m_Asset: {fileID: 114726860594791444}
-    m_Duration: 1.45
+  - m_Start: 0
+    m_ClipIn: 0
+    m_Asset: {fileID: 114530926188765088}
+    m_Duration: 3.3333333333333335
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 114441624172278402}
+    m_ParentTrack: {fileID: 114461531742740392}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: 0
@@ -90,10 +90,10 @@ MonoBehaviour:
     m_PostExtrapolationMode: 0
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: Infinity
-    m_PreExtrapolationTime: 1.8333333333333333
+    m_PreExtrapolationTime: 0
     m_DisplayName: AlembicShotAsset
     m_Version: 1
---- !u!114 &114726860594791444
+--- !u!114 &114530926188765088
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -105,6 +105,6 @@ MonoBehaviour:
   m_Name: AlembicShotAsset
   m_EditorClassIdentifier: 
   streamPlayer:
-    exposedName: 0f19333b83b150b458399ee51c295f69
+    exposedName: 41e5b54e8335f9d4ba0551639a37edb6
     defaultValue: {fileID: 0}
   endOffset: 0
