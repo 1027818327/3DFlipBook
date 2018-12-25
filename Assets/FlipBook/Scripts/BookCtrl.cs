@@ -13,6 +13,7 @@
 
 
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 using UTJ.Alembic;
@@ -23,6 +24,7 @@ namespace FlipBook
     {
         #region Fields
         private AlembicStreamPlayer mAsp;
+        private EventSystem mEventSystem;
 
         /// <summary>
         /// 上一页
@@ -102,12 +104,45 @@ namespace FlipBook
         #endregion
 
         #region Private Methods
+
+        private void RestoreBook()
+        {
+            if (mAsp == null)
+            {
+                mAsp = GetComponentInChildren<AlembicStreamPlayer>();
+            }
+
+            mFrontPd.Stop();
+            mNextPd.Stop();
+            // 重置动画
+            mAsp.currentTime = 3.333333f;
+
+            RestoreOpenText();
+        }
+
         private void RestoreOpenText()
         {
             mOpenText1.text = mBook.GetPageContent(mCurPage);
             mOpenText2.text = mBook.GetPageContent(mCurPage + 1);
             mOpenPageText1.text = (mCurPage + 1).ToString();
             mOpenPageText2.text = (mCurPage + 2).ToString();
+        }
+
+        private void CloseEvent()
+        {
+            mEventSystem = EventSystem.current;
+            if (mEventSystem != null)
+            {
+                mEventSystem.enabled = false;
+            }
+        }
+
+        private void OpenEvent()
+        {
+            if (mEventSystem != null)
+            {
+                mEventSystem.enabled = true;
+            }
         }
         #endregion
 
@@ -118,6 +153,9 @@ namespace FlipBook
             if (mOpenPd != null)
             {
                 mOpenPd.Play();
+
+                CloseEvent();
+                Invoke("OpenEvent", (float)(mOpenPd.duration - mOpenPd.initialTime));
             }
 
             mCurPage = 0;
@@ -128,9 +166,17 @@ namespace FlipBook
         [ContextMenu("播放关闭书本动画")]
         public void PlayCloseBook()
         {
+            if (mCurPage < 0)
+            {
+                Debuger.LogError("当前书本已经关闭");
+                return;
+            }
+
             if (mClosePd != null)
             {
                 mClosePd.Play();
+                CloseEvent();
+                Invoke("OpenEvent", (float)(mClosePd.duration - mClosePd.initialTime));
             }
 
             if (mCurPage >= 0)
@@ -150,16 +196,24 @@ namespace FlipBook
         [ContextMenu("播放上一页动画")]
         public void PlayFront()
         {
+            if (mCurPage < 0)
+            {
+                Debuger.LogError("请先打开书，才能翻一页");
+                return;
+            }
+
             if (mCurPage > 0)
             {
-                Invoke("RestoreBook", (float)(mFrontPd.duration - mFrontPd.initialTime));
+                float tempIntervalTime = (float)(mFrontPd.duration - mFrontPd.initialTime);
+                Invoke("RestoreBook", tempIntervalTime);
+                CloseEvent();
+                Invoke("OpenEvent", tempIntervalTime);
                 mFrontPd.Play();
 
                 RestoreOpenText();
 
                 mCurPage -= 2;
-                bool tempIsFirst = mCurPage < 0;
-                if (tempIsFirst)
+                if (mCurPage < 0)
                 {
                     mCurPage = 0;
                 }
@@ -175,12 +229,22 @@ namespace FlipBook
         [ContextMenu("播放下一页动画")]
         public void PlayNext()
         {
+            if (mCurPage < 0)
+            {
+                Debuger.LogError("请先打开书，才能翻一页");
+                return;
+            }
+
             if (mCurPage >= mBook.PageNum - 2)
             {
                 return;
             }
 
-            Invoke("RestoreBook", (float)(mNextPd.duration - mNextPd.initialTime));
+            float tempIntervalTime = (float)(mNextPd.duration - mNextPd.initialTime);
+            Invoke("RestoreBook", tempIntervalTime);
+            CloseEvent();
+            Invoke("OpenEvent", tempIntervalTime);
+
             mNextPd.Play();
 
             RestoreOpenText();
@@ -192,27 +256,11 @@ namespace FlipBook
                 mCurPage = mBook.PageNum;
             }
 
-            //Debuger.Log("当前页码是"+mCurPage.ToString());
-
             /// 显示第一页和第二页内容
             mNextText1.text = mBook.GetPageContent(mCurPage);
             mNextText2.text = mBook.GetPageContent(mCurPage + 1);
             mNextPageText1.text = (mCurPage + 1).ToString();
             mNextPageText2.text = (mCurPage + 2).ToString();
-        }
-
-        public void RestoreBook()
-        {
-            if (mAsp == null)
-            {
-                mAsp = GetComponentInChildren<AlembicStreamPlayer>();
-            }
-
-            mFrontPd.Stop();
-            mNextPd.Stop();
-            mAsp.currentTime = 3.333333f;
-
-            RestoreOpenText();
         }
 
         public void TestBook()
