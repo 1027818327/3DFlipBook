@@ -107,25 +107,14 @@ namespace FlipBook
 
         private void RestoreBook()
         {
-            if (mAsp == null)
-            {
-                mAsp = GetComponentInChildren<AlembicStreamPlayer>();
-            }
-
-            mFrontPd.Stop();
-            mNextPd.Stop();
-            // 重置动画
-            mAsp.currentTime = 1.033333f;
-
+            OpenEvent();
             RestoreOpenText();
         }
 
         private void RestoreOpenText()
         {
-            mOpenText1.text = mBook.GetPageContent(mCurPage);
-            mOpenText2.text = mBook.GetPageContent(mCurPage + 1);
-            mOpenPageText1.text = (mCurPage + 1).ToString();
-            mOpenPageText2.text = (mCurPage + 2).ToString();
+            RefreshLeftPage();
+            RefreshRightPage();
         }
 
         private void CloseEvent()
@@ -144,6 +133,43 @@ namespace FlipBook
                 mEventSystem.enabled = true;
             }
         }
+
+        private void ResetLeftPageAnim()
+        {
+            mFrontPd.gameObject.SetActive(false);
+            /*
+            var tempScript = mFrontPd.GetComponent<AlembicStreamPlayer>();
+            if (tempScript != null)
+            {
+                tempScript.currentTime = 0f;
+            }
+            */
+        }
+
+        private void ResetRightPageAnim()
+        {
+            mNextPd.gameObject.SetActive(false);
+            /*
+            var tempScript = mNextPd.GetComponent<AlembicStreamPlayer>();
+            if (tempScript != null)
+            {
+                tempScript.currentTime = 0f;
+            }
+            */
+        }
+
+        private void RefreshLeftPage()
+        {
+            mOpenText1.text = mBook.GetPageContent(mCurPage);
+            mOpenPageText1.text = (mCurPage + 1).ToString();
+        }
+
+        private void RefreshRightPage()
+        {
+            mOpenText2.text = mBook.GetPageContent(mCurPage + 1);
+            mOpenPageText2.text = (mCurPage + 2).ToString();
+        }
+
         #endregion
 
         #region Protected & Public Methods
@@ -159,7 +185,7 @@ namespace FlipBook
             }
 
             mCurPage = 0;
-            /// 显示第一页和第二页内容
+            /// 显示左页和右页内容
             RestoreOpenText();
         }
 
@@ -207,22 +233,26 @@ namespace FlipBook
                 float tempIntervalTime = (float)(mFrontPd.duration - mFrontPd.initialTime);
                 Invoke("RestoreBook", tempIntervalTime);
                 CloseEvent();
-                Invoke("OpenEvent", tempIntervalTime);
+
+                /// 将要翻动的左页显示
+                mFrontPd.gameObject.SetActive(true);
                 mFrontPd.Play();
+                Invoke("ResetLeftPageAnim", tempIntervalTime);
 
                 RestoreOpenText();
+                /// 要翻动的左页文字刷新
+                mPreText1.text = mBook.GetPageContent(mCurPage - 1);
+                mPreText2.text = mBook.GetPageContent(mCurPage);
+                mPrePageText1.text = (mCurPage).ToString();
+                mPrePageText2.text = (mCurPage + 1).ToString();
+                Invoke("RefreshLeftPage", 0.15f);
+                Invoke("RefreshRightPage", tempIntervalTime - 0.15f);
 
                 mCurPage -= 2;
                 if (mCurPage < 0)
                 {
                     mCurPage = 0;
                 }
-
-                /// 显示第一页和第二页内容
-                mPreText1.text = mBook.GetPageContent(mCurPage);
-                mPreText2.text = mBook.GetPageContent(mCurPage + 1);
-                mPrePageText1.text = (mCurPage + 1).ToString();
-                mPrePageText2.text = (mCurPage + 2).ToString();
             }
         }
 
@@ -243,11 +273,21 @@ namespace FlipBook
             float tempIntervalTime = (float)(mNextPd.duration - mNextPd.initialTime);
             Invoke("RestoreBook", tempIntervalTime);
             CloseEvent();
-            Invoke("OpenEvent", tempIntervalTime);
 
+            /// 将要翻动的右页显示
+            mNextPd.gameObject.SetActive(true);
             mNextPd.Play();
+            Invoke("ResetRightPageAnim", tempIntervalTime);
 
             RestoreOpenText();
+
+            /// 要翻动的右页文字刷新
+            mNextText1.text = mBook.GetPageContent(mCurPage + 1);
+            mNextText2.text = mBook.GetPageContent(mCurPage + 2);
+            mNextPageText1.text = (mCurPage + 2).ToString();
+            mNextPageText2.text = (mCurPage + 3).ToString();
+            Invoke("RefreshRightPage", 0.15f);
+            Invoke("RefreshLeftPage", tempIntervalTime - 0.15f);
 
             mCurPage += 2;
             bool tempIsLast = mCurPage >= mBook.PageNum;
@@ -255,12 +295,6 @@ namespace FlipBook
             {
                 mCurPage = mBook.PageNum;
             }
-
-            /// 显示第一页和第二页内容
-            mNextText1.text = mBook.GetPageContent(mCurPage);
-            mNextText2.text = mBook.GetPageContent(mCurPage + 1);
-            mNextPageText1.text = (mCurPage + 1).ToString();
-            mNextPageText2.text = (mCurPage + 2).ToString();
         }
 
         public void TestBook()
