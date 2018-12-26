@@ -13,12 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NextId: 0
   m_Tracks:
-  - {fileID: 114441624172278402}
+  - {fileID: 114634708254406332}
   m_FixedDuration: 0
   m_EditorSettings:
-    m_Framerate: 60
+    m_Framerate: 24
   m_DurationMode: 0
---- !u!114 &114441624172278402
+--- !u!114 &114634708254406332
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -36,12 +36,12 @@ MonoBehaviour:
   m_Parent: {fileID: 11400000}
   m_Children: []
   m_Clips:
-  - m_Start: 1.8333333333333333
-    m_ClipIn: 1.8333333333333333
-    m_Asset: {fileID: 114726860594791444}
-    m_Duration: 1.0166666666666668
+  - m_Start: 1.3333333333333333
+    m_ClipIn: 1.3333333333333333
+    m_Asset: {fileID: 114712007536483718}
+    m_Duration: 1.5833333333333333
     m_TimeScale: 1
-    m_ParentTrack: {fileID: 114441624172278402}
+    m_ParentTrack: {fileID: 114634708254406332}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: 0
@@ -90,10 +90,10 @@ MonoBehaviour:
     m_PostExtrapolationMode: 0
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: Infinity
-    m_PreExtrapolationTime: 1.8333333333333333
+    m_PreExtrapolationTime: 1.3333333333333333
     m_DisplayName: AlembicShotAsset
     m_Version: 1
---- !u!114 &114726860594791444
+--- !u!114 &114712007536483718
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -105,6 +105,6 @@ MonoBehaviour:
   m_Name: AlembicShotAsset
   m_EditorClassIdentifier: 
   streamPlayer:
-    exposedName: 0f19333b83b150b458399ee51c295f69
+    exposedName: 374564c29f4c20a41b71add2e2688eca
     defaultValue: {fileID: 0}
   endOffset: 0

@@ -115,7 +115,7 @@ namespace FlipBook
             mFrontPd.Stop();
             mNextPd.Stop();
             // 重置动画
-            mAsp.currentTime = 3.333333f;
+            mAsp.currentTime = 1.033333f;
 
             RestoreOpenText();
         }
