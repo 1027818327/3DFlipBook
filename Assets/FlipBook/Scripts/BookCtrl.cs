@@ -101,6 +101,19 @@ namespace FlipBook
         //
         //    }
 
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            var tempScript = GameObject.FindObjectOfType<EventSystem>();
+            if (tempScript == null)
+            {
+                var tempObj = new GameObject("EventSystem");
+                tempObj.AddComponent<EventSystem>();
+                tempObj.AddComponent<StandaloneInputModule>();
+            }
+        }
+#endif
+
         #endregion
 
         #region Private Methods
