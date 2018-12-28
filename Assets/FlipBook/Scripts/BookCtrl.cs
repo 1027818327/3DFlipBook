@@ -12,6 +12,8 @@
 #endregion
 
 
+using Framework.Unity.Tools;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Playables;
@@ -25,6 +27,7 @@ namespace FlipBook
         #region Fields
         private AlembicStreamPlayer mAsp;
         private EventSystem mEventSystem;
+        private Text mTempText;
 
         /// <summary>
         /// 上一页
@@ -81,10 +84,10 @@ namespace FlipBook
         //
         //    }
         //
-        void Start()
-        {
-            TestBook();
-        }
+        //void Start()
+        //{
+
+        //}
         //    
         //    void Update() 
         //    {
@@ -310,14 +313,35 @@ namespace FlipBook
             }
         }
 
-        public void TestBook()
+        public List<string> GetGontent(Text text, string content)
         {
-            int tempCount = 10;
-            mBook = new Book(tempCount);
-            for (int i = 0; i < tempCount; i++)
+            List<string> tempList = new List<string>();
+            while (content != null && content.Length != 0)
             {
-                string tempText = string.Format("你好，当前页码是{0}", i + 1);
-                mBook.SetPageContent(i, tempText);
+                text.text = content;
+                text.cachedTextGenerator.Populate(text.text, text.GetGenerationSettings(text.rectTransform.rect.size));
+                int tempCount = text.cachedTextGenerator.vertexCount / 4 - 1;
+                string tempPageContent = content.Substring(0, tempCount);
+                tempList.Add(tempPageContent);
+
+                content = content.Substring(tempCount);
+            }
+            text.text = null;
+            return tempList;
+        }
+
+        public void SetBookContent(string text)
+        {
+            if (mTempText == null)
+            {
+                mTempText = GameObjectUtils.FindComponent<Text>(gameObject, "TempCanvas/Text");
+            }
+
+            List<string> tempList = GetGontent(mTempText, text);
+            mBook = new Book(tempList.Count);
+            for (int i = 0; i < tempList.Count; i++)
+            {
+                mBook.SetPageContent(i, tempList[i]);
             }
         }
         #endregion
