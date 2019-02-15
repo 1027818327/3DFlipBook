@@ -143,6 +143,52 @@
             框架部分事件结束
             </summary>
         </member>
+        <member name="T:Framework.Http.HttpUtils">
+            <summary>
+            HTTP辅助类
+            </summary>
+        </member>
+        <member name="F:Framework.Http.HttpUtils.allDone">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Framework.Http.HttpUtils.SendPost(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.String@)">
+            <summary>
+            同步发送http post请求
+            </summary>
+            <param name="url">地址</param>
+            <param name="parameters">查询参数集合</param>
+            <param name="varResult">接收到的数据</param>
+            <returns>返回false表示网络异常，true表示成功发送并接收数据</returns>
+        </member>
+        <member name="M:Framework.Http.HttpUtils.SendGet(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.String@)">
+            <summary>
+            同步发送http get请求
+            </summary>
+            <param name="url">地址</param>
+            <param name="parameters">查询参数集合</param>
+            <param name="varResult">接收到的数据</param>
+            <returns>返回false表示网络异常，true表示成功发送并接收数据</returns>
+        </member>
+        <member name="M:Framework.Http.HttpUtils.SendPostAnsyc(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Action{System.String})">
+            <summary>
+            异步发送post请求
+            </summary>
+            <param name="url">地址</param>
+            <param name="parameters">查询参数集合</param>
+            <param name="callback">回调函数</param>
+            <returns>返回false表示网络异常，true表示成功发送并接收数据</returns>
+        </member>
+        <member name="M:Framework.Http.HttpUtils.SendGetAnsyc(System.String,System.Collections.Generic.IDictionary{System.String,System.String},System.Action{System.String})">
+            <summary>
+            异步发送get请求
+            </summary>
+            <param name="url">地址</param>
+            <param name="parameters">查询参数集合</param>
+            <param name="callback">回调函数</param>
+            <returns>返回false表示网络异常，true表示成功发送并接收数据</returns>
+        </member>
         <member name="T:Framework.IO.FileUtils">
             <summary>
             文件帮助类
@@ -267,6 +313,106 @@
             <summary>
             重启当前状态
             </summary>
+        </member>
+        <member name="T:Framework.PID.ProcessUtils">
+            <summary>
+            进程管理帮助类
+            </summary>
+        </member>
+        <member name="M:Framework.PID.ProcessUtils.ExecuteInCmd(System.String)">
+            <summary>
+            执行内部命令（cmd.exe 中的命令）, 注意unity .net3.5不支持，需要切换到.net4.6
+            </summary>
+            <param name="cmdline">命令行</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="M:Framework.PID.ProcessUtils.ExecuteOutCmd(System.String,System.String)">
+            <summary>
+            执行外部命令
+            </summary>
+            <param name="argument">命令参数</param>
+            <param name="application">命令程序路径</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="T:Framework.Procedure.AbstractLoadProcedure">
+            <summary>
+            抽象加载流程类
+            </summary>
+        </member>
+        <member name="M:Framework.Procedure.AbstractLoadProcedure.ProcedureBegin">
+            <summary>
+            流程开始
+            </summary>
+        </member>
+        <member name="M:Framework.Procedure.AbstractLoadProcedure.ProcedureEnd">
+            <summary>
+            流程结束
+            </summary>
+        </member>
+        <member name="M:Framework.Procedure.AbstractLoadProcedure.RegisterEndCallback(System.Action)">
+            <summary>
+            注册流程结束回调
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Framework.Procedure.AbstractLoadProcedure.UnRegisterEndCallback(System.Action)">
+            <summary>
+            解注册流程结束回调
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="T:Framework.Procedure.ILoadProcedure">
+            <summary>
+            数据加载流程
+            </summary>
+        </member>
+        <member name="T:Framework.Procedure.IProcedure">
+            <summary>
+            流程接口
+            </summary>
+        </member>
+        <member name="M:Framework.Procedure.IProcedure.ProcedureBegin">
+            <summary>
+            流程开始
+            </summary>
+        </member>
+        <member name="M:Framework.Procedure.IProcedure.ProcedureEnd">
+            <summary>
+            流程结束
+            </summary>
+        </member>
+        <member name="M:Framework.Procedure.IProcedure.RegisterEndCallback(System.Action)">
+            <summary>
+            注册结束回调
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Framework.Procedure.IProcedure.UnRegisterEndCallback(System.Action)">
+            <summary>
+            解注册结束回调
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="T:Framework.Registry.RegistryUtils">
+            <summary>
+            注册表辅助类, 只用于PC环境
+            </summary>
+        </member>
+        <member name="M:Framework.Registry.RegistryUtils.Get(Microsoft.Win32.RegistryKey,System.String)">
+            <summary>
+            获取注册表
+            </summary>
+            <param name="varRk">从指定注册表搜索，Registry.ClassesRoot或者Registry.CurrentUser或者Registry.LocalMachine或者Registry.Users或者Registry.CurrentConfig</param>
+            <param name="varPath">从指定路径下查找，以/分隔</param>
+            <returns>返回所有子项</returns>
+        </member>
+        <member name="M:Framework.Registry.RegistryUtils.GetRegistryKey(Microsoft.Win32.RegistryKey,System.String)">
+            <summary>
+            获取注册表
+            </summary>
+            <param name="varRk">从指定注册表搜索，Registry.ClassesRoot或者Registry.CurrentUser或者Registry.LocalMachine或者Registry.Users或者Registry.CurrentConfig</param>
+            <param name="varPath">从指定路径下查找，以/分隔</param>
+            <returns>返回注册项</returns>
         </member>
         <member name="T:Framework.Security.DES">
             <summary>
@@ -448,6 +594,359 @@
             朝向目标
             </summary>
             <param name="hitPoint"></param>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.IMultiLanguage.LoadLanguage(Framework.Unity.MultiLanguage.LanguageType)">
+            <summary>
+            加载指定语言
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.IMultiLanguage.SwitchLanguage(Framework.Unity.MultiLanguage.LanguageType)">
+            <summary>
+            切换语言
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.IMultiLanguage.GetValue(Framework.Unity.MultiLanguage.LanguageType,System.String)">
+            <summary>
+            获取指定语言和键值对应的value
+            </summary>
+            <param name="type"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.IMultiLanguage.GetValue(System.String)">
+            <summary>
+            获取指定键值对应的value
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.IMultiLanguage.RegisterSwitchCallback(System.Action)">
+            <summary>
+            注册切换语言回调
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.IMultiLanguage.UnRegisterSwitchCallback(System.Action)">
+            <summary>
+            解注册切换语言回调
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="T:Framework.Unity.MultiLanguage.LanguageManager">
+            <summary>
+            语言管理
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageManager.mLanguageTypes">
+            <summary>
+            当前支持的语言类型
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageManager.mLanguageTextAssets">
+            <summary>
+            对应的语言的配置文件
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageManager.mInstance">
+            <summary>
+            实例
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageManager.mCurrentLanguageType">
+            <summary>
+            当前语言类型
+            </summary>
+        </member>
+        <member name="P:Framework.Unity.MultiLanguage.LanguageManager.CurrentLanguageType">
+            <summary>
+            当前语言
+            </summary>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.LanguageManager.LoadLanguage(Framework.Unity.MultiLanguage.LanguageType)">
+            <summary>
+            加载语言
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.LanguageManager.SwitchLanguage(Framework.Unity.MultiLanguage.LanguageType)">
+            <summary>
+            切换语言
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.LanguageManager.GetValue(Framework.Unity.MultiLanguage.LanguageType,System.String)">
+            <summary>
+            获取指定语言key对应的value
+            </summary>
+            <param name="type"></param>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.LanguageManager.GetValue(System.String)">
+            <summary>
+            获取当前语言key值对应的value
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.LanguageManager.RegisterSwitchCallback(System.Action)">
+            <summary>
+            注册加载回调
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.LanguageManager.UnRegisterSwitchCallback(System.Action)">
+            <summary>
+            解注册加载回调
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.LanguageManager.ProcedureBegin">
+            <summary>
+            加载流程开始
+            </summary>
+        </member>
+        <member name="T:Framework.Unity.MultiLanguage.LanguageType">
+            <summary>
+            语言类型
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Afrikaans">
+            <summary>
+            南非
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Arabic">
+            <summary>
+            阿拉伯
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Basque">
+            <summary>
+            巴斯克
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Belarusian">
+            <summary>
+            白俄罗斯
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Bulgarian">
+            <summary>
+            保加利亚
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Catalan">
+            <summary>
+            加泰罗尼亚
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Chinese">
+            <summary>
+            中文
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Czech">
+            <summary>
+            捷克
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Danish">
+            <summary>
+            丹麦
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Dutch">
+            <summary>
+            荷兰
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.English">
+            <summary>
+            英语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Estonian">
+            <summary>
+            爱沙尼亚
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Faroese">
+            <summary>
+            法罗
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Finnish">
+            <summary>
+            芬兰
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.French">
+            <summary>
+            法语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.German">
+            <summary>
+            德语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Greek">
+            <summary>
+            希腊
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Hebrew">
+            <summary>
+            希伯来语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Hungarian">
+            <summary>
+            匈牙利语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Icelandic">
+            <summary>
+            冰岛语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Indonesian">
+            <summary>
+            印尼语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Italian">
+            <summary>
+            意大利语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Japanese">
+            <summary>
+            日语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Korean">
+            <summary>
+            韩国语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Latvian">
+            <summary>
+            拉脱维亚语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Lithuanian">
+            <summary>
+            立陶宛语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Norwegian">
+            <summary>
+            挪威语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Polish">
+            <summary>
+            波兰
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Portuguese">
+            <summary>
+            葡萄牙语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Romanian">
+            <summary>
+            罗马尼亚语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Russian">
+            <summary>
+            俄语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.SerboCroatian">
+            <summary>
+            塞尔维亚语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Slovak">
+            <summary>
+            斯洛伐克语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Slovenian">
+            <summary>
+            斯洛维尼亚语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Spanish">
+            <summary>
+            西班牙语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Swedish">
+            <summary>
+            瑞典语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Thai">
+            <summary>
+            泰国语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Turkish">
+            <summary>
+            土耳其语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Ukrainian">
+            <summary>
+            乌克兰语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Vietnamese">
+            <summary>
+            越南语
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.ChineseSimplified">
+            <summary>
+            简体中文
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.ChineseTraditional">
+            <summary>
+            繁体中文
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageType.Unknown">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="T:Framework.Unity.MultiLanguage.LanguageText">
+            <summary>
+            针对UGUI Text解析文本
+            </summary>
+        </member>
+        <member name="F:Framework.Unity.MultiLanguage.LanguageText.mKey">
+            <summary>
+            文本
+            </summary>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.LanguageText.UpdateText">
+            <summary>
+            更新文本
+            </summary>
+        </member>
+        <member name="M:Framework.Unity.MultiLanguage.LanguageText.SwitchLanguage">
+            <summary>
+            语言切换
+            </summary>
         </member>
         <member name="T:Framework.Unity.Pattern.SingletonMono`1">
             <summary>
@@ -2420,160 +2919,54 @@
             <param name="path">xml文档路径</param>
             <returns></returns>
         </member>
-        <member name="T:Framework.Runtime.DebuggerActiveWindowType">
+        <member name="T:Framework.Debugger.Debuger">
             <summary>
-            调试器激活窗口类型。
+            扩展Debug类
             </summary>
         </member>
-        <member name="F:Framework.Runtime.DebuggerActiveWindowType.Auto">
+        <member name="F:Framework.Debugger.Debuger.EnableLog">
             <summary>
-            自动（发布版本状态关闭，开发版本状态打开）。
+            是否开启Log
             </summary>
         </member>
-        <member name="F:Framework.Runtime.DebuggerActiveWindowType.Close">
+        <member name="M:Framework.Debugger.Debuger.Log(System.String)">
             <summary>
-            关闭。
+            输出日志
             </summary>
+            <param name="log"></param>
         </member>
-        <member name="F:Framework.Runtime.DebuggerActiveWindowType.Open">
+        <member name="M:Framework.Debugger.Debuger.LogError(System.String)">
             <summary>
-            打开。
+            输出错误日志
             </summary>
+            <param name="logError"></param>
         </member>
-        <member name="T:Framework.Runtime.DebuggerComponent">
+        <member name="M:Framework.Debugger.Debuger.LogWarning(System.String)">
             <summary>
-            调试组件。
+            输出警告日志
             </summary>
+            <param name="logWarning"></param>
         </member>
-        <member name="F:Framework.Runtime.DebuggerComponent.DefaultIconRect">
+        <member name="M:Framework.Debugger.Debuger.LogFormat(System.String,System.Object[])">
             <summary>
-            默认调试器漂浮框大小。
+            格式化日志输出
             </summary>
-        </member>
-        <member name="F:Framework.Runtime.DebuggerComponent.DefaultWindowRect">
-            <summary>
-            默认调试器窗口大小。
-            </summary>
-        </member>
-        <member name="F:Framework.Runtime.DebuggerComponent.DefaultWindowScale">
-            <summary>
-            默认调试器窗口缩放比例。
-            </summary>
-        </member>
-        <member name="P:Framework.Runtime.DebuggerComponent.ActiveWindow">
-            <summary>
-            获取或设置调试窗口是否激活。
-            </summary>
-        </member>
-        <member name="P:Framework.Runtime.DebuggerComponent.ShowFullWindow">
-            <summary>
-            获取或设置是否显示完整调试器界面。
-            </summary>
-        </member>
-        <member name="P:Framework.Runtime.DebuggerComponent.IconRect">
-            <summary>
-            获取或设置调试器漂浮框大小。
-            </summary>
-        </member>
-        <member name="P:Framework.Runtime.DebuggerComponent.WindowRect">
-            <summary>
-            获取或设置调试器窗口大小。
-            </summary>
-        </member>
-        <member name="P:Framework.Runtime.DebuggerComponent.WindowScale">
-            <summary>
-            获取或设置调试器窗口缩放比例。
-            </summary>
-        </member>
-        <member name="P:Framework.Runtime.DebuggerComponent.ActiveWindowType">
-            <summary>
-            激活的窗口类型
-            </summary>
-        </member>
-        <member name="M:Framework.Runtime.DebuggerComponent.Awake">
-            <summary>
-            游戏框架组件初始化。
-            </summary>
-        </member>
-        <member name="M:Framework.Runtime.DebuggerComponent.RegisterDebuggerWindow(System.String,Framework.Debugger.IDebuggerWindow,System.Object[])">
-            <summary>
-            注册调试窗口。
-            </summary>
-            <param name="path">调试窗口路径。</param>
-            <param name="debuggerWindow">要注册的调试窗口。</param>
-            <param name="args">初始化调试窗口参数。</param>
-        </member>
-        <member name="M:Framework.Runtime.DebuggerComponent.GetDebuggerWindow(System.String)">
-            <summary>
-            获取调试窗口。
-            </summary>
-            <param name="path">调试窗口路径。</param>
-            <returns>要获取的调试窗口。</returns>
-        </member>
-        <member name="M:Framework.Runtime.DebuggerComponent.RegisterExtensionWindows">
-            <summary>
-            注册扩展窗口
-            </summary>
-        </member>
-        <member name="T:Framework.Runtime.ScrollableDebuggerWindowBase">
-            <summary>
-            抽象滑动的调试窗口基类
-            </summary>
-        </member>
-        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.Initialize(System.Object[])">
-            <summary>
-            初始化方法
-            </summary>
+            <param name="format"></param>
             <param name="args"></param>
         </member>
-        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.Shutdown">
+        <member name="M:Framework.Debugger.Debuger.LogErrorFormat(System.String,System.Object[])">
             <summary>
-            关闭方法
+            格式化错误日志输出
             </summary>
+            <param name="format"></param>
+            <param name="args"></param>
         </member>
-        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.OnEnter">
+        <member name="M:Framework.Debugger.Debuger.LogWarningFormat(System.String,System.Object[])">
             <summary>
-            当进入
+            格式化警告日志输出
             </summary>
-        </member>
-        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.OnLeave">
-            <summary>
-            当离开
-            </summary>
-        </member>
-        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.OnUpdate(System.Single,System.Single)">
-            <summary>
-            OnUpdate
-            </summary>
-            <param name="elapseSeconds"></param>
-            <param name="realElapseSeconds"></param>
-        </member>
-        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.OnDraw">
-            <summary>
-            Draw函数
-            </summary>
-        </member>
-        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.OnDrawScrollableWindow">
-            <summary>
-            抽象方法
-            </summary>
-        </member>
-        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.DrawItem(System.String,System.String)">
-            <summary>
-            画Item
-            </summary>
-            <param name="title"></param>
-            <param name="content"></param>
-        </member>
-        <member name="T:Framework.Runtime.ExampleWindow">
-            <summary>
-            示例窗口，继承ScrollableDebuggerWindowBase
-            </summary>
-        </member>
-        <member name="M:Framework.Runtime.ExampleWindow.OnDrawScrollableWindow">
-            <summary>
-            重写OnDrawScrollableWindow
-            </summary>
+            <param name="format"></param>
+            <param name="args"></param>
         </member>
         <member name="T:Framework.Debugger.DebuggerManager">
             <summary>
@@ -2800,6 +3193,1023 @@
             </summary>
             <param name="path">调试窗口路径。</param>
             <param name="debuggerWindow">要注册的调试窗口。</param>
+        </member>
+        <member name="T:Framework.Runtime.DebuggerActiveWindowType">
+            <summary>
+            调试器激活窗口类型。
+            </summary>
+        </member>
+        <member name="F:Framework.Runtime.DebuggerActiveWindowType.Auto">
+            <summary>
+            自动（发布版本状态关闭，开发版本状态打开）。
+            </summary>
+        </member>
+        <member name="F:Framework.Runtime.DebuggerActiveWindowType.Close">
+            <summary>
+            关闭。
+            </summary>
+        </member>
+        <member name="F:Framework.Runtime.DebuggerActiveWindowType.Open">
+            <summary>
+            打开。
+            </summary>
+        </member>
+        <member name="T:Framework.Runtime.DebuggerComponent">
+            <summary>
+            调试组件。
+            </summary>
+        </member>
+        <member name="F:Framework.Runtime.DebuggerComponent.DefaultIconRect">
+            <summary>
+            默认调试器漂浮框大小。
+            </summary>
+        </member>
+        <member name="F:Framework.Runtime.DebuggerComponent.DefaultWindowRect">
+            <summary>
+            默认调试器窗口大小。
+            </summary>
+        </member>
+        <member name="F:Framework.Runtime.DebuggerComponent.DefaultWindowScale">
+            <summary>
+            默认调试器窗口缩放比例。
+            </summary>
+        </member>
+        <member name="P:Framework.Runtime.DebuggerComponent.ActiveWindow">
+            <summary>
+            获取或设置调试窗口是否激活。
+            </summary>
+        </member>
+        <member name="P:Framework.Runtime.DebuggerComponent.ShowFullWindow">
+            <summary>
+            获取或设置是否显示完整调试器界面。
+            </summary>
+        </member>
+        <member name="P:Framework.Runtime.DebuggerComponent.IconRect">
+            <summary>
+            获取或设置调试器漂浮框大小。
+            </summary>
+        </member>
+        <member name="P:Framework.Runtime.DebuggerComponent.WindowRect">
+            <summary>
+            获取或设置调试器窗口大小。
+            </summary>
+        </member>
+        <member name="P:Framework.Runtime.DebuggerComponent.WindowScale">
+            <summary>
+            获取或设置调试器窗口缩放比例。
+            </summary>
+        </member>
+        <member name="P:Framework.Runtime.DebuggerComponent.ActiveWindowType">
+            <summary>
+            激活的窗口类型
+            </summary>
+        </member>
+        <member name="M:Framework.Runtime.DebuggerComponent.Awake">
+            <summary>
+            游戏框架组件初始化。
+            </summary>
+        </member>
+        <member name="M:Framework.Runtime.DebuggerComponent.RegisterDebuggerWindow(System.String,Framework.Debugger.IDebuggerWindow,System.Object[])">
+            <summary>
+            注册调试窗口。
+            </summary>
+            <param name="path">调试窗口路径。</param>
+            <param name="debuggerWindow">要注册的调试窗口。</param>
+            <param name="args">初始化调试窗口参数。</param>
+        </member>
+        <member name="M:Framework.Runtime.DebuggerComponent.GetDebuggerWindow(System.String)">
+            <summary>
+            获取调试窗口。
+            </summary>
+            <param name="path">调试窗口路径。</param>
+            <returns>要获取的调试窗口。</returns>
+        </member>
+        <member name="M:Framework.Runtime.DebuggerComponent.RegisterExtensionWindows">
+            <summary>
+            注册扩展窗口
+            </summary>
+        </member>
+        <member name="T:Framework.Runtime.ScrollableDebuggerWindowBase">
+            <summary>
+            抽象滑动的调试窗口基类
+            </summary>
+        </member>
+        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.Initialize(System.Object[])">
+            <summary>
+            初始化方法
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.Shutdown">
+            <summary>
+            关闭方法
+            </summary>
+        </member>
+        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.OnEnter">
+            <summary>
+            当进入
+            </summary>
+        </member>
+        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.OnLeave">
+            <summary>
+            当离开
+            </summary>
+        </member>
+        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.OnUpdate(System.Single,System.Single)">
+            <summary>
+            OnUpdate
+            </summary>
+            <param name="elapseSeconds"></param>
+            <param name="realElapseSeconds"></param>
+        </member>
+        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.OnDraw">
+            <summary>
+            Draw函数
+            </summary>
+        </member>
+        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.OnDrawScrollableWindow">
+            <summary>
+            抽象方法
+            </summary>
+        </member>
+        <member name="M:Framework.Runtime.ScrollableDebuggerWindowBase.DrawItem(System.String,System.String)">
+            <summary>
+            画Item
+            </summary>
+            <param name="title"></param>
+            <param name="content"></param>
+        </member>
+        <member name="T:Framework.Runtime.ExampleWindow">
+            <summary>
+            示例窗口，继承ScrollableDebuggerWindowBase
+            </summary>
+        </member>
+        <member name="M:Framework.Runtime.ExampleWindow.OnDrawScrollableWindow">
+            <summary>
+            重写OnDrawScrollableWindow
+            </summary>
+        </member>
+        <member name="T:SimpleJSON.JSONNodeType">
+            <summary>
+            Json节点类型
+            </summary>
+        </member>
+        <member name="F:SimpleJSON.JSONNodeType.Array">
+            <summary>
+            数组
+            </summary>
+        </member>
+        <member name="F:SimpleJSON.JSONNodeType.Object">
+            <summary>
+            Json对象
+            </summary>
+        </member>
+        <member name="F:SimpleJSON.JSONNodeType.String">
+            <summary>
+            字符串
+            </summary>
+        </member>
+        <member name="F:SimpleJSON.JSONNodeType.Number">
+            <summary>
+            数字
+            </summary>
+        </member>
+        <member name="F:SimpleJSON.JSONNodeType.NullValue">
+            <summary>
+            空值
+            </summary>
+        </member>
+        <member name="F:SimpleJSON.JSONNodeType.Boolean">
+            <summary>
+            布尔类型
+            </summary>
+        </member>
+        <member name="F:SimpleJSON.JSONNodeType.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:SimpleJSON.JSONNodeType.Custom">
+            <summary>
+            Custom
+            </summary>
+        </member>
+        <member name="T:SimpleJSON.JSONTextMode">
+            <summary>
+            Json文本模式
+            </summary>
+        </member>
+        <member name="F:SimpleJSON.JSONTextMode.Compact">
+            <summary>
+            紧凑
+            </summary>
+        </member>
+        <member name="F:SimpleJSON.JSONTextMode.Indent">
+            <summary>
+            缩进
+            </summary>
+        </member>
+        <member name="T:SimpleJSON.JSONNode">
+            <summary>
+            Json节点
+            </summary>
+        </member>
+        <member name="T:SimpleJSON.JSONNode.Enumerator">
+            <summary>
+            结构体
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.Enumerator.IsValid">
+            <summary>
+            是否有效
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.Enumerator.#ctor(System.Collections.Generic.List{SimpleJSON.JSONNode}.Enumerator)">
+            <summary>
+            构造函数 
+            </summary>
+            <param name="aArrayEnum"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.Enumerator.#ctor(System.Collections.Generic.Dictionary{System.String,SimpleJSON.JSONNode}.Enumerator)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="aDictEnum"></param>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.Enumerator.Current">
+            <summary>
+            当前键值对
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.Enumerator.MoveNext">
+            <summary>
+            移动到下一个
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SimpleJSON.JSONNode.ValueEnumerator">
+            <summary>
+            结构体
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.ValueEnumerator.#ctor(System.Collections.Generic.List{SimpleJSON.JSONNode}.Enumerator)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="aArrayEnum"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.ValueEnumerator.#ctor(System.Collections.Generic.Dictionary{System.String,SimpleJSON.JSONNode}.Enumerator)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="aDictEnum"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.ValueEnumerator.#ctor(SimpleJSON.JSONNode.Enumerator)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="aEnumerator"></param>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.ValueEnumerator.Current">
+            <summary>
+            当前节点
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.ValueEnumerator.MoveNext">
+            <summary>
+            移动到下一个
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.ValueEnumerator.GetEnumerator">
+            <summary>
+            获取当前迭代器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SimpleJSON.JSONNode.KeyEnumerator">
+            <summary>
+            结构体
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.KeyEnumerator.#ctor(System.Collections.Generic.List{SimpleJSON.JSONNode}.Enumerator)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="aArrayEnum"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.KeyEnumerator.#ctor(System.Collections.Generic.Dictionary{System.String,SimpleJSON.JSONNode}.Enumerator)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="aDictEnum"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.KeyEnumerator.#ctor(SimpleJSON.JSONNode.Enumerator)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="aEnumerator"></param>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.KeyEnumerator.Current">
+            <summary>
+            当前节点
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.KeyEnumerator.MoveNext">
+            <summary>
+            移动到下一个
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.KeyEnumerator.GetEnumerator">
+            <summary>
+            获取迭代器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SimpleJSON.JSONNode.LinqEnumerator">
+            <summary>
+            LinqEnumerator迭代器
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.LinqEnumerator.Current">
+            <summary>
+            当前键值对
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.LinqEnumerator.MoveNext">
+            <summary>
+            移动到下一个
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.LinqEnumerator.Dispose">
+            <summary>
+            释放
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.LinqEnumerator.GetEnumerator">
+            <summary>
+            获取迭代器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.LinqEnumerator.Reset">
+            <summary>
+            重置
+            </summary>
+        </member>
+        <member name="F:SimpleJSON.JSONNode.forceASCII">
+            <summary>
+            强制ASCII编码
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.Tag">
+            <summary>
+            tag
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.Item(System.Int32)">
+            <summary>
+            获取Json节点
+            </summary>
+            <param name="aIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.Item(System.String)">
+            <summary>
+            获取Json节点
+            </summary>
+            <param name="aKey"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.Value">
+            <summary>
+            Value
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.Count">
+            <summary>
+            数量
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.IsNumber">
+            <summary>
+            是否是数字
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.IsString">
+            <summary>
+            是否是字符串
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.IsBoolean">
+            <summary>
+            是否是布尔类型
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.IsNull">
+            <summary>
+            是否是空值
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.IsArray">
+            <summary>
+            是否是集合
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.IsObject">
+            <summary>
+            是否是对象
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.Inline">
+            <summary>
+            是否内联
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.Add(System.String,SimpleJSON.JSONNode)">
+            <summary>
+            添加
+            </summary>
+            <param name="aKey"></param>
+            <param name="aItem"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.Add(SimpleJSON.JSONNode)">
+            <summary>
+            添加
+            </summary>
+            <param name="aItem"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.Remove(System.String)">
+            <summary>
+            移除
+            </summary>
+            <param name="aKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.Remove(System.Int32)">
+            <summary>
+            移除
+            </summary>
+            <param name="aIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.Remove(SimpleJSON.JSONNode)">
+            <summary>
+            移除
+            </summary>
+            <param name="aNode"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.Children">
+            <summary>
+            子节点
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.DeepChildren">
+            <summary>
+            获取迭代器
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.ToString">
+            <summary>
+            重写ToString方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.ToString(System.Int32)">
+            <summary>
+            ToString方法扩展
+            </summary>
+            <param name="aIndent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.GetEnumerator">
+            <summary>
+            获取迭代器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.Linq">
+            <summary>
+            返回Linq迭代器
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.Keys">
+            <summary>
+            获取Key迭代器
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.Values">
+            <summary>
+            获取Value迭代器
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.AsDouble">
+            <summary>
+            转成Double类型
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.AsInt">
+            <summary>
+            转成Int类型
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.AsFloat">
+            <summary>
+            转成Float类型
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.AsBool">
+            <summary>
+            转成Bool类型
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.AsArray">
+            <summary>
+            转成集合类型
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNode.AsObject">
+            <summary>
+            转成对象类型
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.op_Implicit(System.String)~SimpleJSON.JSONNode">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.op_Implicit(SimpleJSON.JSONNode)~System.String">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="d"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.op_Implicit(System.Double)~SimpleJSON.JSONNode">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="n"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.op_Implicit(SimpleJSON.JSONNode)~System.Double">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="d"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.op_Implicit(System.Single)~SimpleJSON.JSONNode">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="n"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.op_Implicit(SimpleJSON.JSONNode)~System.Single">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="d"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.op_Implicit(System.Int32)~SimpleJSON.JSONNode">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="n"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.op_Implicit(SimpleJSON.JSONNode)~System.Int32">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="d"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.op_Implicit(System.Boolean)~SimpleJSON.JSONNode">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="b"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.op_Implicit(SimpleJSON.JSONNode)~System.Boolean">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="d"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.op_Implicit(System.Collections.Generic.KeyValuePair{System.String,SimpleJSON.JSONNode})~SimpleJSON.JSONNode">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="aKeyValue"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.op_Equality(SimpleJSON.JSONNode,System.Object)">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.op_Inequality(SimpleJSON.JSONNode,System.Object)">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.Equals(System.Object)">
+            <summary>
+            重载运算符
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.GetHashCode">
+            <summary>
+            重载运算符
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNode.Parse(System.String)">
+            <summary>
+            转成Json节点
+            </summary>
+            <param name="aJSON"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SimpleJSON.JSONArray">
+            <summary>
+            Json集合
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONArray.Inline">
+            <summary>
+            是否内联
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONArray.Tag">
+            <summary>
+            Tag
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONArray.IsArray">
+            <summary>
+            是否是集合
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONArray.GetEnumerator">
+            <summary>
+            获取迭代器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONArray.Item(System.Int32)">
+            <summary>
+            获取Json节点
+            </summary>
+            <param name="aIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONArray.Item(System.String)">
+            <summary>
+            获取Json节点
+            </summary>
+            <param name="aKey"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONArray.Count">
+            <summary>
+            数量
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONArray.Add(System.String,SimpleJSON.JSONNode)">
+            <summary>
+            添加
+            </summary>
+            <param name="aKey"></param>
+            <param name="aItem"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONArray.Remove(System.Int32)">
+            <summary>
+            移除
+            </summary>
+            <param name="aIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONArray.Remove(SimpleJSON.JSONNode)">
+            <summary>
+            移除
+            </summary>
+            <param name="aNode"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONArray.Children">
+            <summary>
+            子节点
+            </summary>
+        </member>
+        <member name="T:SimpleJSON.JSONObject">
+            <summary>
+            Json对象
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONObject.Inline">
+            <summary>
+            是否内联
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONObject.Tag">
+            <summary>
+            Tag
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONObject.IsObject">
+            <summary>
+            是否是对象
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONObject.GetEnumerator">
+            <summary>
+            获取迭代器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONObject.Item(System.String)">
+            <summary>
+            获取Json节点
+            </summary>
+            <param name="aKey"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONObject.Item(System.Int32)">
+            <summary>
+            获取Json节点
+            </summary>
+            <param name="aIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONObject.Count">
+            <summary>
+            数量
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONObject.Add(System.String,SimpleJSON.JSONNode)">
+            <summary>
+            添加
+            </summary>
+            <param name="aKey"></param>
+            <param name="aItem"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONObject.Remove(System.String)">
+            <summary>
+            移除
+            </summary>
+            <param name="aKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONObject.Remove(System.Int32)">
+            <summary>
+            移除
+            </summary>
+            <param name="aIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONObject.Remove(SimpleJSON.JSONNode)">
+            <summary>
+            移除
+            </summary>
+            <param name="aNode"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONObject.Children">
+            <summary>
+            子节点
+            </summary>
+        </member>
+        <member name="T:SimpleJSON.JSONString">
+            <summary>
+            Json字符串
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONString.Tag">
+            <summary>
+            Tag
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONString.IsString">
+            <summary>
+            是否是字符串
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONString.GetEnumerator">
+            <summary>
+            获取迭代器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONString.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONString.#ctor(System.String)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="aData"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONString.Equals(System.Object)">
+            <summary>
+            重写Equals方法
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONString.GetHashCode">
+            <summary>
+            重写GetHashCode方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SimpleJSON.JSONNumber">
+            <summary>
+            Json数字
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNumber.Tag">
+            <summary>
+            Tag
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNumber.IsNumber">
+            <summary>
+            是否是数字
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNumber.GetEnumerator">
+            <summary>
+            获取迭代器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONNumber.Value">
+            <summary>
+            获取值
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNumber.AsDouble">
+            <summary>
+            转成Double类型
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNumber.#ctor(System.Double)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="aData"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNumber.#ctor(System.String)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="aData"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONNumber.Equals(System.Object)">
+            <summary>
+            重写Equals方法
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNumber.GetHashCode">
+            <summary>
+            重写GetHashCode方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SimpleJSON.JSONBool">
+            <summary>
+            JsonBool类型
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONBool.Tag">
+            <summary>
+            Tag
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONBool.IsBoolean">
+            <summary>
+            是否是布尔类型
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONBool.GetEnumerator">
+            <summary>
+            获取迭代器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONBool.Value">
+            <summary>
+            获取值
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONBool.AsBool">
+            <summary>
+            转成布尔类型
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONBool.#ctor(System.Boolean)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="aData"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONBool.#ctor(System.String)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="aData"></param>
+        </member>
+        <member name="M:SimpleJSON.JSONBool.Equals(System.Object)">
+            <summary>
+            重写Equals方法
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONBool.GetHashCode">
+            <summary>
+            重写GetHashCode方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SimpleJSON.JSONNull">
+            <summary>
+            JsonNull类型
+            </summary>
+        </member>
+        <member name="F:SimpleJSON.JSONNull.reuseSameInstance">
+            <summary>
+            是否重复使用相同实例
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNull.CreateOrGet">
+            <summary>
+            创建或者获取实例
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONNull.Tag">
+            <summary>
+            Tag
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNull.IsNull">
+            <summary>
+            是否是Null类型
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNull.GetEnumerator">
+            <summary>
+            获取迭代器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJSON.JSONNull.Value">
+            <summary>
+            获取值
+            </summary>
+        </member>
+        <member name="P:SimpleJSON.JSONNull.AsBool">
+            <summary>
+            是布尔类型
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSONNull.Equals(System.Object)">
+            <summary>
+            重写Equals方法
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJSON.JSONNull.GetHashCode">
+            <summary>
+            重写GetHashCode方法
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SimpleJSON.JSON">
+            <summary>
+            Json静态类
+            </summary>
+        </member>
+        <member name="M:SimpleJSON.JSON.Parse(System.String)">
+            <summary>
+            解析字符串成Json节点
+            </summary>
+            <param name="aJSON"></param>
+            <returns></returns>
         </member>
         <member name="T:EnumLabelAttribute">
             <summary>
@@ -3179,86 +4589,6 @@
             </summary>
             <param name="v"></param>
             <param name="strValue"></param>
-        </member>
-        <member name="T:Debuger">
-            <summary>
-            扩展Debug类
-            </summary>
-        </member>
-        <member name="F:Debuger.mLogReplace">
-            <summary>
-            替换ILogHandler接口
-            </summary>
-        </member>
-        <member name="F:Debuger.EnableLog">
-            <summary>
-            是否开启Log
-            </summary>
-        </member>
-        <member name="M:Debuger.Log(System.String)">
-            <summary>
-            输出日志
-            </summary>
-            <param name="log"></param>
-        </member>
-        <member name="M:Debuger.LogError(System.String)">
-            <summary>
-            输出错误日志
-            </summary>
-            <param name="logError"></param>
-        </member>
-        <member name="M:Debuger.LogWarning(System.String)">
-            <summary>
-            输出警告日志
-            </summary>
-            <param name="logWarning"></param>
-        </member>
-        <member name="M:Debuger.LogFormat(System.String,System.Object[])">
-            <summary>
-            格式化日志输出
-            </summary>
-            <param name="format"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:Debuger.LogErrorFormat(System.String,System.Object[])">
-            <summary>
-            格式化错误日志输出
-            </summary>
-            <param name="format"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:Debuger.LogWarningFormat(System.String,System.Object[])">
-            <summary>
-            格式化警告日志输出
-            </summary>
-            <param name="format"></param>
-            <param name="args"></param>
-        </member>
-        <member name="T:LogReplace">
-            <summary>
-            重写ILogHandler接口
-            </summary>
-        </member>
-        <member name="M:LogReplace.#ctor">
-            <summary>
-            构造方法
-            </summary>
-        </member>
-        <member name="M:LogReplace.LogFormat(UnityEngine.LogType,UnityEngine.Object,System.String,System.Object[])">
-            <summary>
-            重写日志输出
-            </summary>
-            <param name="logType"></param>
-            <param name="context"></param>
-            <param name="format"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:LogReplace.LogException(System.Exception,UnityEngine.Object)">
-            <summary>
-            重写错误日志输出
-            </summary>
-            <param name="exception"></param>
-            <param name="context"></param>
         </member>
     </members>
 </doc>

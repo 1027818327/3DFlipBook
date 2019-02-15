@@ -20,7 +20,7 @@ namespace Demo
     public class TestFlipBook : MonoBehaviour
     {
         #region Fields
-
+        public TextAsset mAsset;
         #endregion
 
         #region Properties
@@ -65,6 +65,7 @@ namespace Demo
 　　总起来说，这五年，是改革开放和全面建设小康社会取得重大进展的五年，是我国综合国力大幅提升和人民得到更多实惠的五年，是我国国际地位和影响显著提高的五年，是党的创造力、凝聚力、战斗力明显增强和全党全国各族人民团结更加紧密的五年。实践充分证明，十六大和十六大以来中央作出的各项重大决策是完全正确的。
 　　五年来的成就，是全党全国各族人民共同奋斗的结果。我代表中共中央，向全国各族人民，向各民主党派、各人民团体和各界爱国人士，向香港特别行政区同胞、澳门特别行政区同胞和台湾同胞以及广大侨胞，向一切关心和支持中国现代化建设的各国朋友，表示衷心的感谢！
 ";
+
             BookCtrl tempBc = GetComponent<BookCtrl>();
             tempBc.SetBookContent(tempStr);
         }

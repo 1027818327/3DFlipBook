@@ -12,6 +12,7 @@
 #endregion
 
 
+using Framework.Debugger;
 using Framework.Unity.Tools;
 using System.Collections.Generic;
 using UnityEngine;

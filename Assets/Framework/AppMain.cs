@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Framework.Runtime;
 using Framework.Unity.Tools;
+using Framework.Debugger;
 
 namespace Framework.Unity
 {
@@ -14,6 +15,7 @@ namespace Framework.Unity
             //tempSingleObj.hideFlags = HideFlags.HideInHierarchy;
             AppMain tempScript = tempSingleObj.AddComponent<AppMain>();
             GameObject.DontDestroyOnLoad(tempSingleObj);
+
 
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
             tempScript.OpenLog();

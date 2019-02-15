@@ -20,6 +20,11 @@
             打开宏定义窗口
             </summary>
         </member>
+        <member name="T:Framework.Unity.Editor.ExportPackage">
+            <summary>
+            导出资源包辅助类
+            </summary>
+        </member>
         <member name="T:Framework.Unity.Editor.FindMissingScripts">
             <summary>
             查询丢失脚本的类
